@@ -1,32 +1,27 @@
 import angular from 'angular';
-import app from './app';
-import chatApp from './components/app';
-import lobby from './components/lobby';
-import login from './components/login';
+
+import 'angular-touch';
+import 'angular-animate';
+import 'angular-aria';
+import 'angular-messages';
+import 'angular-material';
+
+import manager from './components/manager';
+//inside app componnets
+import leftmenu from './components/manager/leftmenu';
+import content from './components/manager/content';
+
+
+const app=angular.module("app",['ngMaterial']);
+
+app.config(function($mdThemingProvider) {
+
+  $mdThemingProvider.theme('default');
+
+});
 
 //register components
 app
-.component("chatApp",chatApp)
-.component("lobby",lobby)
-.component("login",login);
-
-
-app.config(function($stateProvider) {
-
-  const lobbyState = {
-    name: 'lobby',
-    url: '/',
-    template: '<lobby />'
-  };
-
-  const loginState = {
-    name: 'login',
-    url: '/login',
-    template: '<login />'
-  };
-
-
-  $stateProvider.state(lobbyState);
-  $stateProvider.state(loginState);
-
-});
+.component("manager",manager)
+  .component("leftmenu",leftmenu)
+  .component("content",content);
