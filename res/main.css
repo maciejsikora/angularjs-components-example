@@ -1,0 +1,52 @@
+.menu-list{
+
+  background-color:rgb(63,81,181);
+  cursor:pointer;
+  color:white;
+}
+
+.search-input{
+
+  margin-top:40px;
+}
+
+.search-input label{
+
+  color:white;
+}
+
+.search-input input{
+
+  color:white;
+}
+
+.noclients{
+
+  padding:20px;
+  width:100%;
+}
+
+.client-row{
+  padding:10px;
+  padding-left:20px;
+}
+
+
+.toast-success .md-toast-content{
+  background-color: green!important;
+}
+
+
+.addclient button{
+
+  margin-top:-20px;
+}
+
+#menu-logo{
+
+  background-image: url("/res/img/dataart.png");
+  width: 160px;
+  height:160px;
+  margin:auto;
+  background-position: center;
+}
