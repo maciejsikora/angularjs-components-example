@@ -5,6 +5,8 @@ class Controller{
   handleClearClick(){
 
       monit.monitOut("NOCLIENTS","onClearSearch",3);
+
+      
       this.onClearSearch();
   }
 

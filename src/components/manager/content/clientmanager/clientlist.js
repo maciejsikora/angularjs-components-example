@@ -73,6 +73,8 @@ class Controller{
   $onChanges(objs){
 
     monit.monitIn("CLIENTLIST","$onChanges",2);
+
+    //FILTER LIST AFTER EVERY DATA CHANGE ( SEARCH CHANGE )
     this.generateVisibleList();
 
   }

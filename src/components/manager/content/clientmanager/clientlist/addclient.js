@@ -32,6 +32,9 @@ class Controller {
 
   handleButtonClick(){
 
+    if (this.client.name.trim().length===0 || this.client.surname.trim().length===0 || !(this.client.age>0) ) 
+    return;//wrong data
+
     //run out callback
     // <---- communicate with parent component
     monit.monitOut("ADDCLIENT","onAdd",3);

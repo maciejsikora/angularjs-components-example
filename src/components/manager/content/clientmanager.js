@@ -22,7 +22,14 @@ class Controller{
 
 
     //!!!CHANGE OBJECT TO NEW ONE TO HAVE NEW REFERENCE AND COMMUNICATE TO CHILD COMPONENTS
-    this.search = {name,surname};
+    this.search = {name,surname};// NEW REFERENCE
+
+    //OBJECT MUTATION BAD PRACTICE
+    //NO COMMUNICATION WITH COMPONENTS
+    //this.search.name=name;
+    //this.search.surname=surname;
+
+
     monit.monitIn("CLIENTMANAGER","handleSearch",1);
 
   }

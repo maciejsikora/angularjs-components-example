@@ -18,12 +18,14 @@ class Controller{
     // this.client.name="=====";
     // this.client.surname="=====";
     // this.client.age="====";
-    
+
 
     monit.monitOut("CLIENT","onQuestion",3);
     this.onQuestion({client:this.client,index:this.index});
 
-
+    //NO CHANGE IN PARENT SCOPE
+    //BAD PRACTICE
+    this.client={name:"Jaś",surname:"Fasola",age:"60"};//reference change
   }
 
   $onDestroy(){
