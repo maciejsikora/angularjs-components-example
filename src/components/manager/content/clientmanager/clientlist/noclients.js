@@ -1,4 +1,24 @@
-import monit from '../../../../monit.js';
+import monit from '../../../../../monit.js';
+
+class Controller{
+
+  handleClearClick(){
+
+      monit.monitOut("NOCLIENTS","onClearSearch",3);
+      this.onClearSearch();
+  }
+
+  $onInit(){
+
+      monit.monitInit("NOCLIENTS",3);
+  }
+
+  $onDestroy(){
+
+      monit.monitDestroy("NOCLIENTS",3);
+  }
+
+}
 
 // EMPTY INFO SHOW - DUMP COMPONENT
 //component shows info about empty list
@@ -7,14 +27,7 @@ export default {
   bindings:{
     onClearSearch:"&" //OUT
   },
-  controller:function(){
-
-      this.handleClearClick=()=>{
-
-          monit.monitOut("NOCLIENTS","onClearSearch",3);
-          this.onClearSearch();
-      };
-  },
+  controller:Controller,
   template:`
   <div layout="row" layout-padding layout-wrap layout-fill style="padding-bottom: 32px;" ng-cloak>
 

@@ -1,4 +1,4 @@
-import monit from '../../../../monit.js';
+import monit from '../../../../../monit.js';
 /**
 Client add components manages inputs and button for client add.
 **/
@@ -18,6 +18,16 @@ class Controller {
       surname:"",
       "age":""
     };
+  }
+
+  $onInit(){
+
+    monit.monitInit("ADDCLIENT",3);
+  }
+
+  $onDestroy(){
+
+    monit.monitDestroy("ADDCLIENT",3);
   }
 
   handleButtonClick(){

@@ -1,4 +1,4 @@
-import monit from '../../../monit.js';
+import monit from '../../../../monit.js';
 // CLIENTLIST - SMART COMPONENT WITH DATA MUTATION
 
 class Controller{
@@ -62,7 +62,7 @@ class Controller{
   handleClientDelete(index){
 
     monit.monitIn("CLIENTLIST","handleClientDelete",2);
-    
+
     this.allclients.splice(index, 1); //remove element
     this.generateVisibleList();
 
@@ -72,8 +72,14 @@ class Controller{
 
   $onChanges(objs){
 
-    monit.monitIn("CLIENTLIST","$onChanges",this.search,2);
+    monit.monitIn("CLIENTLIST","$onChanges",2);
     this.generateVisibleList();
+
+  }
+
+  $onDestroy(){
+
+    monit.monitDestroy("CLIENTLIST",2);
 
   }
 

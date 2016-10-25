@@ -51,8 +51,9 @@
 #menu-logo{
 
   background-image: url("/res/img/dataart.png");
-  width: 160px;
-  height:160px;
+  background-size: 100px 100px;
+  width: 100px;
+  height:100px;
   margin:auto;
   background-position: center;
 }

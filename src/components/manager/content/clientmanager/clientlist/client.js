@@ -1,4 +1,4 @@
-import monit from '../../../../monit.js';
+import monit from '../../../../../monit.js';
 //SINGLE CLIENT ROW COMPONENT -- SHOULD BE DUMP COMPONENT
 class Controller{
 
@@ -40,13 +40,14 @@ class Controller{
     //WHEN DELETES ONLY INDEX IS CHANGING
 
     //client data changes
-    if (changes.client)
-    monit.monitIn("CLIENT","$onChanges",this.client,3);
+    monit.monitIn("CLIENT","$onChanges",3);
 
-    //only array index changes
-    if (changes.index && this.index)
-    monit.monitIn("CLIENT","$onChanges",{index:this.index},3);
+  }
 
+  $postLink(){
+
+    //HERE EXAMPLE ACCESS TO DOM
+    //console.log(document.querySelectorAll('client md-list-item')[this.index]);
   }
 
 

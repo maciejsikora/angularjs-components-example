@@ -1,4 +1,4 @@
-import monit from '../../../monit.js';
+import monit from '../../../../monit.js';
 
 // SEARCH TIPICAL DUMP component
 // NO DATA MUTATION
@@ -15,7 +15,7 @@ class Controller{
   //sends info about search to parent component
   doSearch(){
 
-    monit.monitOut("SEARCH","onSearch",this.search,2);
+    monit.monitOut("SEARCH","onSearch",2);
     //calling parent scope callback
     this.onSearch(this.search);
 
@@ -48,7 +48,13 @@ class Controller{
   //change from parent is only possible for clearing
   $onChanges(objs){
 
-    monit.monitIn("SEARCH","$onChanges",this.search,2);
+    monit.monitIn("SEARCH","$onChanges",2);
+
+  }
+
+  $onDestroy(objs){
+
+    monit.monitDestroy("SEARCH",2);
 
   }
 
