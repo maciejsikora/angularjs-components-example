@@ -1,42 +1,26 @@
-class Controller{
+import monit from '../../../../monit.js';
 
-
-  handleQuestionClick(){
-
-    //change properties
-    this.allclients.push({ name:"Clark",surname:"Kent",age:"==="}); //reference change
-    this.clients.push({ name:"Clark",surname:"Kent",age:"==="});
-    //new reference - to all list
-    //this.allclients=[{ name:"Clark",surname:"Kent",age:"==="},{ name:"James",surname:"Howlett ( Logan )",age:"==="},{ name:"Wade",surname:"Wilson",age:"==="}];
-
-  }
-
-
-  $onChanges(objs){
-
-    console.log("Change of clients list visivle in noclient component");
-  }
-
-};
+// EMPTY INFO SHOW - DUMP COMPONENT
 //component shows info about empty list
 export default {
 
   bindings:{
-
-    allclients:"<", //ome // two way binding
-    clients:"<",
-    onClearSearch:"&"
+    onClearSearch:"&" //OUT
   },
-  controller:Controller,
+  controller:function(){
+
+      this.handleClearClick=()=>{
+
+          monit.monitOut("NOCLIENTS","onClearSearch",3);
+          this.onClearSearch();
+      };
+  },
   template:`
   <div layout="row" layout-padding layout-wrap layout-fill style="padding-bottom: 32px;" ng-cloak>
 
   <div class="padded noclients" md-whiteframe="1"  layout layout-align="center center">
     <h3>Client list is empty</h3>
-    <md-button ng-click="$ctrl.handleQuestionClick()" class="md-fab md-mini md-raised" aria-label="Client question" >
-        <md-icon md-svg-src="/res/img/question.svg"></md-icon>
-    </md-button>
-    <md-button class="md-raised md-warn" ng-click="$ctrl.onClearSearch()" >
+    <md-button class="md-raised md-warn" ng-click="$ctrl.handleClearClick()" >
       Clear Search
     </md-button>
   </div>

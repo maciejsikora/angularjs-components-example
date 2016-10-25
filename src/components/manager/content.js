@@ -1,3 +1,5 @@
+import monit from '../../monit.js';
+
 class Controller{
 
   constructor(){
@@ -18,14 +20,23 @@ class Controller{
   //its manage search operation
   handleSearch(name,surname){
 
-      this.search = {name,surname};
+
+    //!!!CHANGE OBJECT TO NEW ONE TO HAVE NEW REFERENCE AND COMMUNICATE TO CHILD COMPONENTS
+    this.search = {name,surname};
+    monit.monitIn("CONTENT","handleSearch",this.search,1);
 
   }
 
   handleSearchClear(){
 
+    monit.monitIn("CONTENT","handleSearchClear",1);
     this.resetSearch();
 
+  }
+
+  $onInit(){
+
+    monit.monitInit("CONTENT",1);
   }
 
 }

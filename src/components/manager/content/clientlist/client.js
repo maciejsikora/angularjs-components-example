@@ -1,7 +1,10 @@
+import monit from '../../../../monit.js';
+//SINGLE CLIENT ROW COMPONENT -- SHOULD BE DUMP COMPONENT
 class Controller{
 
   handleButtonClick(){
 
+    monit.monitOut("CLIENT","onDelete",3);
     this.onDelete({index:this.index});
 
   }
@@ -9,12 +12,40 @@ class Controller{
   handleQuestionClick(){
 
     //change in the same reference
-    this.client.name="=====";
-    this.client.surname="=====";
-    this.client.age="====";
+    //MODYFICATION OF ONE-WAY-BINDED DATA!!
+    //IT SHOULD NOT BE HERE!!
+    //BAD PRACTICE
+    // this.client.name="=====";
+    // this.client.surname="=====";
+    // this.client.age="====";
 
 
     this.onQuestion({client:this.client,index:this.index});
+
+  }
+
+  $onDestroy(){
+
+    monit.monitDestroy("CLIENT",3);
+  }
+
+  $onInit(){
+
+    monit.monitInit("CLIENT",3);
+
+  }
+
+  $onChanges(changes){
+
+    //WHEN DELETES ONLY INDEX IS CHANGING
+
+    //client data changes
+    if (changes.client)
+    monit.monitIn("CLIENT","$onChanges",this.client,3);
+
+    //only array index changes
+    if (changes.index && this.index)
+    monit.monitIn("CLIENT","$onChanges",{index:this.index},3);
 
   }
 
@@ -27,10 +58,10 @@ class Controller{
 const component = {
 
   bindings:{
-    client: '<', //one way binding --> from parent
-    index: '<', //one way binding --> from parent
-    onDelete:'&', // <-- conection to parent
-    onQuestion:'&'// <-- conection to parent
+    client: '<', // IN one way binding --> from parent
+    index: '<', //IN one way binding --> from parent
+    onDelete:'&', // OUT <-- conection to parent
+    onQuestion:'&'// OUT <-- conection to parent
   },
   controller:Controller,
   template:`

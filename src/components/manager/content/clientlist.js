@@ -1,11 +1,25 @@
+import monit from '../../../monit.js';
+// CLIENTLIST - SMART COMPONENT WITH DATA MUTATION
+
 class Controller{
 
   constructor($mdToast){
 
-    this.allclients=[{name:"Jan",surname:"Kowalski", age:55}]; //all clients in list
+    this.allclients=[
+      {name:"Bruce",surname:"Wayne", age:38},
+      {name:"Clark",surname:"Kent", age:30},
+      {name:"James",surname:"Howlett ( Logan )", age:40},
+      {name:"Floyd",surname:"Lawton ( Deadshot )", age:40},
+      {name:"Wade",surname:"Winston ( Deadpool )", age:35},
+      {name:"Nicolas",surname:"Cage ( ... )", age:50}
+
+
+
+    ]; //all clients in list
     this.generateVisibleList();
 
     this.$toast=$mdToast;
+
 
   }
 
@@ -35,6 +49,8 @@ class Controller{
   //method adds client to list
   handleAddClient(client){
 
+    monit.monitIn("CLIENTLIST","handleAddClient",2);
+
     this.allclients.unshift(client);//push client to client list
     this.generateVisibleList();
 
@@ -45,7 +61,8 @@ class Controller{
   //remove client from list
   handleClientDelete(index){
 
-
+    monit.monitIn("CLIENTLIST","handleClientDelete",2);
+    
     this.allclients.splice(index, 1); //remove element
     this.generateVisibleList();
 
@@ -55,7 +72,7 @@ class Controller{
 
   $onChanges(objs){
 
-    this.search=objs.search.currentValue;
+    monit.monitIn("CLIENTLIST","$onChanges",this.search,2);
     this.generateVisibleList();
 
   }
@@ -75,7 +92,22 @@ class Controller{
 
   handleClientQuestion(client,index){
 
+    //NO REFERENCE CHANGE - NO COMMUNICATION WITH COMPONENTS ONLY SCOPE CHANGES
+    client.name="????";
+    client.surname="????";
+    client.age="??";
 
+    //HERE IS REFERENCE CHANGE
+    this.clients[index]={...client}; //new object reference
+
+  }
+
+  //method only for monitoring
+  onClearSearchProxy(){
+
+    monit.monitOut("CLIENTLIST","onClearSearch",2);
+    //go to parent
+    this.onClearSearch();
 
   }
 
@@ -85,8 +117,8 @@ class Controller{
 const component = {
 
   bindings:{
-    search:"<", //one way binding from parent
-    onClearSearch:"&"
+    search:"<", //IN
+    onClearSearch:"&" //OUT
   },
   controller:["$mdToast",Controller],//set our class as controller
   template:`
@@ -94,7 +126,7 @@ const component = {
     <md-list ng-if="$ctrl.hasClients()" ng-repeat="client in $ctrl.clients">
       <client on-question="$ctrl.handleClientQuestion(client,index)" on-delete="$ctrl.handleClientDelete(index)" client="client" index="$index" ></client>
     </md-list>
-    <noclients ng-show="!$ctrl.hasClients()" on-clear-search="$ctrl.onClearSearch()" clients="$ctrl.clients" allclients="$ctrl.allclients"></noclients>
+    <noclients ng-show="!$ctrl.hasClients()" on-clear-search="$ctrl.onClearSearchProxy()" clients="$ctrl.clients" allclients="$ctrl.allclients"></noclients>
   </md-content>
   <addclient on-add="$ctrl.handleAddClient(client)"></addclient>
   `

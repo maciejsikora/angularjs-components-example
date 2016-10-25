@@ -8,6 +8,12 @@
 .search-input{
 
   margin-top:40px;
+  font-size: 20px;
+}
+
+.search-first-input{
+
+  margin-left:20px;
 }
 
 .search-input label{

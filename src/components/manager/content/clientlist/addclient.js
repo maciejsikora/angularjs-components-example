@@ -1,3 +1,4 @@
+import monit from '../../../../monit.js';
 /**
 Client add components manages inputs and button for client add.
 **/
@@ -23,6 +24,7 @@ class Controller {
 
     //run out callback
     // <---- communicate with parent component
+    monit.monitOut("ADDCLIENT","onAdd",3);
     this.onAdd({client:this.client});
     this.resetClientData();
 
@@ -34,7 +36,7 @@ class Controller {
 const component = {
 
   bindings: {
-    onAdd: '&' // <-- connection with parent component
+    onAdd: '&' // OUT <-- connection with parent component
   },
   controller:Controller,
   template:`
