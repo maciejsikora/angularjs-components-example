@@ -18,9 +18,11 @@ class Controller{
     // this.client.name="=====";
     // this.client.surname="=====";
     // this.client.age="====";
+    
 
-
+    monit.monitOut("CLIENT","onQuestion",3);
     this.onQuestion({client:this.client,index:this.index});
+
 
   }
 

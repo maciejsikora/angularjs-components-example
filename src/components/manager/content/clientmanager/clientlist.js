@@ -98,6 +98,7 @@ class Controller{
 
   handleClientQuestion(client,index){
 
+    monit.monitIn("CLIENTLIST","handleClientQuestion",2);
     //NO REFERENCE CHANGE - NO COMMUNICATION WITH COMPONENTS ONLY SCOPE CHANGES
     client.name="????";
     client.surname="????";
