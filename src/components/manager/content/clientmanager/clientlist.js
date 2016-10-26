@@ -91,6 +91,7 @@ class Controller{
       const nameReg=new RegExp(this.search.name,"i");
       const surnameReg=new RegExp(this.search.surname,"i");
 
+      // LIST FILTERING
       this.clients=this.allclients.filter((client)=>{
 
         return  nameReg.test(client.name) && surnameReg.test(client.surname);
