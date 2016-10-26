@@ -103,12 +103,21 @@ class Controller{
 
     monit.monitIn("CLIENTLIST","handleClientQuestion",2);
     //NO REFERENCE CHANGE - NO COMMUNICATION WITH COMPONENTS ONLY SCOPE CHANGES
-    client.name="????";
-    client.surname="????";
-    client.age="??";
+
+    const nclient={...client};//copy client data and create new object
+
+    nclient.name="????";
+    nclient.surname="????";
+
+    //console.log(client===nclient);//false it is different object
 
     //HERE IS REFERENCE CHANGE
-    this.clients[index]={...client}; //new object reference
+    this.clients[index]=nclient; //new object reference
+
+    //WHAT IF WE NOT CREATE NEW OBJECT AND ONLY MUTATE
+    //client.name="????";
+    //client.surname="????";
+    //SO JAŚ FASOLA ACCURSE. WHY?
 
   }
 
