@@ -21,7 +21,7 @@ To run project:
 npm install
 ```
 
-2. Buld program
+2. Build program
 ``` 
 npm run build 
 ``` 
