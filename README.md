@@ -16,19 +16,19 @@ Projects uses:
  
 To run project:
 
-1. Install dependencies:
+1.Install dependencies:
 ``` 
 npm install
 ```
 
-2. Build program
+2.Build program
 ``` 
 npm run build 
 ``` 
 
-3. Run it on some local web server for example http-server from node ( npm install http-server )
+3.Run it on some local web server for example http-server from node ( npm install http-server )
 
-4. To development run:
+4.For development run:
 ```
 npm run watch
 ```
