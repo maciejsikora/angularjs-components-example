@@ -35,8 +35,8 @@ npm run watch
 
 Development files are inside **src** directory, files are compiled to **dist** directory.
 
-Application preview:
+##Application preview
 ![preview](https://github.com/maciejsikora/angularjs-components-example/blob/master/res/img/preview.png)
 
-Application components tree:
+##Application components tree
 ![components tree](https://github.com/maciejsikora/angularjs-components-example/blob/master/res/img/communication.png)
